@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  bankingapp-api:
+    image: gndlovu/dev-env:latest
+    container_name: bankingapp-api
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/var/www/html
+    working_dir: /var/www/html/
+    ports:
+      - "3000:80"
