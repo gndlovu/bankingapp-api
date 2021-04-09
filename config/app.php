@@ -175,6 +175,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         * Our service providers
+         */
+        App\Providers\RepositoryServiceProvider::class,
+        App\Providers\DingoSerializerServiceProvider::class,
     ],
 
     /*
