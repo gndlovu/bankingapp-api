@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Dingo\Api\Routing\Helpers;
 
 /**
- * @OA\Info(
+ *  @OA\Info(
  *      version="1.0.0",
  *      title="Banking App OpenApi",
  *      description="Banking App API Explorer..",
@@ -20,10 +20,10 @@ use Dingo\Api\Routing\Helpers;
  *         name="Apache 2.0",
  *         url="http://www.apache.org/licenses/LICENSE-2.0.html"
  *     )
- * )
+ *  )
  *
- * @OA\Schemes(format="http")
- * @OA\SecurityScheme(
+ *  @OA\Schemes(format="http")
+ *  @OA\SecurityScheme(
  *      securityScheme="bearerAuth",
  *      description="Paste the token below:",
  *      in="header",
@@ -31,17 +31,21 @@ use Dingo\Api\Routing\Helpers;
  *      type="http",
  *      scheme="bearer",
  *      bearerFormat="JWT",
- * )
+ *  )
  *
  *  @OA\Server(
  *      url=L5_SWAGGER_CONST_HOST,
  *      description="Swagger OpenApi server"
  *  )
  *
- * @OA\Tag(
- *     name="Test",
- *     description="API Endpoints for testing."
- * )
+ *  @OA\Tag(
+ *      name="Test",
+ *      description="API Endpoints for testing."
+ *  )
+ *  @OA\Tag(
+ *      name="Authentication",
+ *      description="API Endpoints for user authentication."
+ *  )
  * 
  *  @OA\Get(
  *      path="/hello",

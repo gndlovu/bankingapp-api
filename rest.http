@@ -1,0 +1,75 @@
+### Test
+GET http://localhost:3000/api/v1/hello
+
+### User registration
+POST http://localhost:3000/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "name": "Gladwell Ndlovu",
+    "email": "gladwell_n@live.com",
+    "password": "P@ssword01",
+    "password_confirmation": "P@ssword01"
+}
+
+### Resend User email verification
+POST http://localhost:3000/api/v1/auth/email/resend
+Content-Type: application/json
+
+{
+    "email": "gladwell_n@live.com"
+}
+
+### User login*/
+POST http://localhost:3000/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email": "gladwell_n@live.com",
+    "password": "P@ssword01"
+}
+
+### Google2FA login
+POST http://localhost:3000/api/v1/auth/two-factor
+Content-Type: application/json
+
+{
+    "email": "gladwell_n@live.com",
+    "code": 123456
+}
+
+
+### Token refresh
+POST http://localhost:3000/api/v1/auth/refresh
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6MzAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MTc5NzY4NTUsImV4cCI6MTYxODA2MzI1NSwibmJmIjoxNjE3OTc2ODU1LCJqdGkiOiJrc1pUbUdIZDhQNmNCSUxqIiwic3ViIjozLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.M2bhYdCwlz-_IM6TRYjGKPqt3kvHekUauvWi7X2bvu4
+
+### User profile
+GET http://localhost:3000/api/v1/auth/me
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6MzAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MTc5NzcyMTksImV4cCI6MTYxODA2MzYxOSwibmJmIjoxNjE3OTc3MjE5LCJqdGkiOiJKbFNCZkVHQ1U0eFlvTHVRIiwic3ViIjozLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.buu8h_cqIn3_2TijBbGJuVHRki9fz47OUM5PfL9o75I
+
+### Invalidate token
+POST http://localhost:3000/api/v1/auth/logout
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6MzAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MTc5NzcyMTksImV4cCI6MTYxODA2MzYxOSwibmJmIjoxNjE3OTc3MjE5LCJqdGkiOiJKbFNCZkVHQ1U0eFlvTHVRIiwic3ViIjozLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.buu8h_cqIn3_2TijBbGJuVHRki9fz47OUM5PfL9o75I
+
+
+### Send password reset link
+POST http://localhost:3000/api/v1/auth/password/forgot
+Content-Type: application/json
+
+{
+    "email": "gladwell_n@live.com"
+}
+
+### Reset password
+POST http://localhost:3000/api/v1/auth/password/reset
+Content-Type: application/json
+
+{
+    "email": "gladwell_n@live.com",
+    "token": "e67bf4fd0a809478828bc5aee01322978f9de9bbe6b479e194c603a2591f11ca",
+    "password": "P@ssword01",
+    "password_confirmation": "P@ssword01"
+}
