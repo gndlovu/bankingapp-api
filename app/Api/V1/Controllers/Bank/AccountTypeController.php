@@ -34,7 +34,7 @@ class AccountTypeController extends Controller
      *      security={
      *         {"bearerAuth": {}}
      *      },
-     *      description="Returns bank branche list.",
+     *      description="Returns bank account type list.",
      *      @OA\Response(response=200, description="Successful request"),
      *      @OA\Response(response=429, description="Too Many Requests"),
      *      @OA\Response(response=401, description="Unauthorized")

@@ -18,7 +18,7 @@ class CreateAccountsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('account_type_id')->unsigned();
             $table->bigInteger('branch_id')->unsigned();
-            $table->integer('account_no');
+            $table->string('account_no', 11);
             $table->decimal('balance');
             $table->decimal('overdraft')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

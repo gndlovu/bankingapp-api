@@ -386,13 +386,143 @@
                 }
             }
         },
+        "/bank/accounts/list": {
+            "get": {
+                "tags": [
+                    "Accounts"
+                ],
+                "summary": "User bank accounts",
+                "description": "Returns bank account list.",
+                "operationId": "bankAccount",
+                "responses": {
+                    "200": {
+                        "description": "Successful request"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/bank/accounts/add": {
+            "post": {
+                "tags": [
+                    "Accounts"
+                ],
+                "summary": "New bank account.",
+                "description": "Creates new bank account.",
+                "operationId": "addAccount",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "account_type_id": {
+                                        "type": "number"
+                                    },
+                                    "branch_id": {
+                                        "type": "number"
+                                    },
+                                    "account_no": {
+                                        "type": "string"
+                                    },
+                                    "overdraft": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "account_type_id": 1,
+                                    "branch_id": 1,
+                                    "account_no": "83736453676",
+                                    "overdraft": 5000
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/bank/accounts/edit": {
+            "put": {
+                "tags": [
+                    "Accounts"
+                ],
+                "summary": "Bank account update.",
+                "description": "Updates bank account.",
+                "operationId": "editAccount",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "overdraft": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "id": 1,
+                                    "overdraft": 5000
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Updated"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
         "/bank/accounts/types/list": {
             "get": {
                 "tags": [
                     "Account Types"
                 ],
                 "summary": "Bank branches",
-                "description": "Returns bank branche list.",
+                "description": "Returns bank account type list.",
                 "operationId": "accountTypes",
                 "responses": {
                     "200": {
