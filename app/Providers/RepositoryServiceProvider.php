@@ -11,6 +11,12 @@ use App\Api\V1\Repositories\UserRepository\IUserRepository;
 use App\Api\V1\Repositories\UserRepository\UserRepository;
 use App\Api\V1\Services\TwoFactorService\TwoFactorService;
 use App\Api\V1\Services\TwoFactorService\ITwoFactorService;
+use App\Api\V1\Services\BankService\BankService;
+use App\Api\V1\Services\BankService\IBankService;
+use App\Api\V1\Repositories\BranchRepository\IBranchRepository;
+use App\Api\V1\Repositories\BranchRepository\BranchRepository;
+use App\Api\V1\Repositories\AccountTypeRepository\IAccountTypeRepository;
+use App\Api\V1\Repositories\AccountTypeRepository\AccountTypeRepository;
 
 /**
  * Class RepositoryServiceProvider
@@ -30,6 +36,9 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(IUserRepository::class, UserRepository::class);
         $this->app->bind(IAuthService::class, AuthService::class);
         $this->app->bind(ITwoFactorService::class, TwoFactorService::class);
+        $this->app->bind(IBankService::class, BankService::class);
+        $this->app->bind(IBranchRepository::class, BranchRepository::class);
+        $this->app->bind(IAccountTypeRepository::class, AccountTypeRepository::class);
     }
 
     /**

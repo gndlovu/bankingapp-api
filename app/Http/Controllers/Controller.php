@@ -46,6 +46,14 @@ use Dingo\Api\Routing\Helpers;
  *      name="Authentication",
  *      description="API Endpoints for user authentication."
  *  )
+ *  @OA\Tag(
+ *      name="Account Types",
+ *      description="API Endpoints for bank account types."
+ *  )
+ *  @OA\Tag(
+ *      name="Branhes",
+ *      description="API Endpoints for bank branches."
+ *  )
  * 
  *  @OA\Get(
  *      path="/hello",

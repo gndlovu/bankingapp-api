@@ -2,6 +2,7 @@
 
 namespace App\Api\V1\Repositories;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class BaseRepository implements IBaseRepository
@@ -55,5 +56,15 @@ class BaseRepository implements IBaseRepository
     public function find($id): ?Model
     {
         return $this->model->find($id);
+    }
+
+    /**
+     * Returns all records
+     *
+     * @return Collection
+     */
+    public function all(): ?Collection
+    {
+        return $this->model->all();
     }
 }

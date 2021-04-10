@@ -386,6 +386,58 @@
                 }
             }
         },
+        "/bank/accounts/types/list": {
+            "get": {
+                "tags": [
+                    "Account Types"
+                ],
+                "summary": "Bank branches",
+                "description": "Returns bank branche list.",
+                "operationId": "accountTypes",
+                "responses": {
+                    "200": {
+                        "description": "Successful request"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/bank/branches/list": {
+            "get": {
+                "tags": [
+                    "Branhes"
+                ],
+                "summary": "Bank branches",
+                "description": "Returns bank branche list.",
+                "operationId": "bankBranches",
+                "responses": {
+                    "200": {
+                        "description": "Successful request"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/hello": {
             "get": {
                 "tags": [
@@ -422,6 +474,14 @@
         {
             "name": "Authentication",
             "description": "API Endpoints for user authentication."
+        },
+        {
+            "name": "Account Types",
+            "description": "API Endpoints for bank account types."
+        },
+        {
+            "name": "Branhes",
+            "description": "API Endpoints for bank branches."
         }
     ],
     "security": [

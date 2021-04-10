@@ -73,3 +73,15 @@ Content-Type: application/json
     "password": "P@ssword01",
     "password_confirmation": "P@ssword01"
 }
+
+
+### Get bank branches
+GET http://localhost:3000/api/v1/bank/branches/list
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6MzAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MTgwNDM0ODUsImV4cCI6MTYxODEyOTg4NSwibmJmIjoxNjE4MDQzNDg1LCJqdGkiOiJQUG85b2xjODZWSUdVNzhZIiwic3ViIjozLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.2ofO4APliSvGGGQDCvXO6bmbL0YHjUfHS0v5WdIeOM0
+
+
+### Get bank account types
+GET http://localhost:3000/api/v1/bank/accounts/types/list
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6MzAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2MTgwNDM0ODUsImV4cCI6MTYxODEyOTg4NSwibmJmIjoxNjE4MDQzNDg1LCJqdGkiOiJQUG85b2xjODZWSUdVNzhZIiwic3ViIjozLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.2ofO4APliSvGGGQDCvXO6bmbL0YHjUfHS0v5WdIeOM0
