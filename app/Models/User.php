@@ -98,4 +98,14 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     {
         return $this->belongsTo(Role::class);
     }
+
+    /**
+     * Get user accounts
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function accounts()
+    {
+        return $this->hasMany(Account::class);
+    }
 }
