@@ -28,7 +28,9 @@ class AccountTransformer extends TransformerAbstract
             'id' => (int)$account->id,
             'account_no' => $account->account_no,
             'balance' => $account->balance,
-            'overdraft' => $account->overdraft
+            'overdraft' => $account->overdraft,
+            'created_at' => $account->created_at,
+            'updated_at' => $account->updated_at,
         ];
     }
 
