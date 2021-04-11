@@ -23,6 +23,7 @@ class BranchTransformer extends TransformerAbstract
     public function transform(Branch $branch)
     {
         return [
+            'id'   => $branch->id,
             'bank' => $branch->bank->name,
             'name' => $branch->name,
             'code' => $branch->code,

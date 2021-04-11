@@ -30,4 +30,23 @@ interface IBankService
      * @return void
      */
     public function updateAccount(array $attributes);
+
+    /**
+     * @param int $account_id
+     * @return void
+     */
+    public function getAccountTransactions(int $account_id);
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function getAccount(int $id);
+
+    /**
+     * @param int $account_id
+     * @param array $transaction
+     * @return void
+     */
+    public function createTransaction(int $account_id, array $transaction);
 }

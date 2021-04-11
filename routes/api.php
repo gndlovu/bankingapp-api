@@ -4,6 +4,7 @@ use App\Api\V1\Controllers\Auth\AuthController;
 use App\Api\V1\Controllers\Bank\BranchController;
 use App\Api\V1\Controllers\Bank\AccountTypeController;
 use App\Api\V1\Controllers\Bank\AccountController;
+use App\Api\V1\Controllers\Bank\TransactionController;
 
 $api = app('Dingo\Api\Routing\Router');
 
@@ -40,10 +41,16 @@ $api->version('v1', ['middleware' => 'api'], function ($api) {
                 $api->get('list', [AccountController::class, 'index']);
                 $api->post('add', [AccountController::class, 'add']);
                 $api->put('edit', [AccountController::class, 'edit']);
+                $api->get('{id}', [AccountController::class, 'accountDetails']);
 
                 $api->group(['prefix' => 'types'], function ($api) {
                     $api->get('list', [AccountTypeController::class, 'index']);
                 });
+            });
+
+            $api->group(['prefix' => 'transactions'], function ($api) {
+                $api->get('{account_id}/list', [TransactionController::class, 'history']);
+                $api->post('{account_id}/create', [TransactionController::class, 'create']);
             });
         });
     });

@@ -516,6 +516,32 @@
                 }
             }
         },
+        "/bank/accounts/{id}": {
+            "get": {
+                "tags": [
+                    "Accounts"
+                ],
+                "summary": "Bank account details",
+                "description": "Returns bank account details.",
+                "operationId": "accountDetails",
+                "responses": {
+                    "200": {
+                        "description": "Successful request"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/bank/accounts/types/list": {
             "get": {
                 "tags": [
@@ -568,6 +594,79 @@
                 ]
             }
         },
+        "/bank/transactions/{account_id}/history": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Bank account transactions",
+                "description": "Returns bank account transaction list.",
+                "operationId": "transactions",
+                "responses": {
+                    "200": {
+                        "description": "Successful request"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Inititate transaction.",
+                "description": "Inititate transaction.",
+                "operationId": "transaction",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "amount": {
+                                        "type": "string"
+                                    },
+                                    "my_reference": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "amount": "1000",
+                                    "my_reference": "My First Deposit",
+                                    "type": "deposit"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful request"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "429": {
+                        "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
         "/hello": {
             "get": {
                 "tags": [
@@ -612,6 +711,10 @@
         {
             "name": "Branhes",
             "description": "API Endpoints for bank branches."
+        },
+        {
+            "name": "Transactions",
+            "description": "API Endpoints for bank account transactions."
         }
     ],
     "security": [

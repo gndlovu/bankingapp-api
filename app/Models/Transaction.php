@@ -44,7 +44,7 @@ class Transaction extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function type()
+    public function transactionType()
     {
         return $this->belongsTo(TransactionType::class);
     }

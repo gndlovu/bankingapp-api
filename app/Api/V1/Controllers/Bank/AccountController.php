@@ -148,4 +148,30 @@ class AccountController extends Controller
 
         return $this->response->noContent();
     }
+
+    /**
+     *  @OA\Get(
+     *      path="/bank/accounts/{id}",
+     *      operationId="accountDetails",
+     *      tags={"Accounts"},
+     *      summary="Bank account details",
+     *      security={
+     *         {"bearerAuth": {}}
+     *      },
+     *      description="Returns bank account details.",
+     *      @OA\Response(response=200, description="Successful request"),
+     *      @OA\Response(response=429, description="Too Many Requests"),
+     *      @OA\Response(response=401, description="Unauthorized")
+     * )
+     *
+     * Bank Account details
+     *
+     * @return Response
+     */
+    public function accountDetails(int $id): Response
+    {
+        $account = $this->bankService->getAccount($id);
+
+        return $this->response->item($account, new AccountTransformer);
+    }
 }

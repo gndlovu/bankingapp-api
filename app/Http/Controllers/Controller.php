@@ -54,6 +54,10 @@ use Dingo\Api\Routing\Helpers;
  *      name="Branhes",
  *      description="API Endpoints for bank branches."
  *  )
+ *  @OA\Tag(
+ *      name="Transactions",
+ *      description="API Endpoints for bank account transactions."
+ *  )
  * 
  *  @OA\Get(
  *      path="/hello",
