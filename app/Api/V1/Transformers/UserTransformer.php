@@ -32,7 +32,8 @@ class UserTransformer extends TransformerAbstract
             'object_type'       => "User",
             'id'                => (int) $user->id,
             'name'              => $user->name,
-            'email'             => $user->email
+            'email'             => $user->email,
+            'total_accounts'    => $user->accounts->count()
         ];
 
         return [];
