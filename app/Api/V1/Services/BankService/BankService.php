@@ -166,6 +166,12 @@ class BankService implements IBankService
         $this->transactionRepo->create($transaction);
 
         $this->accountRepo->updateOrCreate(['id' => $account->id], ['balance' => $balance]);
+
+        if ($transaction['type'] === 'transfer') {
+            $toAccount = $this->accountRepo->find($transaction['to_account_id']); // TODO - check if this belongs to the authenticated user
+            $balance = $this->calculateBalance('deposit', $toAccount->balance, $transaction['amount']);
+            $this->accountRepo->updateOrCreate(['id' => $toAccount->id], ['balance' => $balance]);
+        }
     }
 
     /**
@@ -183,6 +189,7 @@ class BankService implements IBankService
                 $balance = $balance + $amount;
                 break;
             case 'withdrawal':
+            case 'transfer':
                 $balance = $balance - $amount;
                 break;
             default:
