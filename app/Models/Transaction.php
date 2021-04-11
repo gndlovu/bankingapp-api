@@ -14,11 +14,7 @@ class Transaction extends Model
         'transaction_type_id',
         'account_id',
         'to_account_id',
-        'to_branch_id',
-        'account_holder',
-        'account_no',
-        'my_reference',
-        'thier_reference',
+        'reference',
         'amount'
     ];
 
@@ -67,15 +63,5 @@ class Transaction extends Model
     public function toAccount()
     {
         return $this->belongsTo(Account::class);
-    }
-
-    /**
-     * Gets reciever branch
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function toBranch()
-    {
-        return $this->belongsTo(Branch::class);
     }
 }

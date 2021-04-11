@@ -22,7 +22,7 @@ class TransactionTransformer extends TransformerAbstract
     /**
      * @var array
      */
-    protected $defaultIncludes = ['account', 'branch'];
+    protected $defaultIncludes = ['account', 'to_account'];
 
     /**
      * @param User $user
@@ -32,10 +32,7 @@ class TransactionTransformer extends TransformerAbstract
     {
         return [
             'id'                => $transaction->id,
-            'account_holder'    => $transaction->account_holder,
-            'account_no'        => $transaction->account_no,
-            'my_reference'      => $transaction->my_reference,
-            'thier_reference'   => $transaction->thier_reference,
+            'reference'         => $transaction->reference,
             'amount'            => $transaction->amount,
             'created_at'        => $transaction->created_at,
             'type'              => $transaction->transactionType->name, // TODO - Move this to it's own transformer
@@ -57,13 +54,13 @@ class TransactionTransformer extends TransformerAbstract
      * @param Transaction $transaction
      * @return \League\Fractal\Resource\Item
      */
-    public function includeBranch(Transaction $transaction)
+    public function includeToAccount(Transaction $transaction)
     {
-        // Branch is null on transfer transactions
-        if (!$transaction->toBranch) {
+        // To account is null on transfer transactions
+        if (!$transaction->toAccount) {
             return;
         }
 
-        return $this->item($transaction->toBranch, new BranchTransformer);
+        return $this->item($transaction->toAccount, new AccountTransformer);
     }
 }
