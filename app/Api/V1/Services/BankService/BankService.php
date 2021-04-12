@@ -14,6 +14,7 @@ use App\Api\V1\Repositories\TransactionRepository\ITransactionRepository;
 use App\Api\V1\Repositories\TransactionTypeRepository\TransactionTypeRepository;
 use App\Api\V1\Repositories\TransactionTypeRepository\ITransactionTypeRepository;
 use App\Models\Account;
+use App\Models\Transaction;
 
 class BankService implements IBankService
 {
@@ -150,7 +151,7 @@ class BankService implements IBankService
      * @param array $transaction
      * @return Account
      */
-    public function createTransaction($account_id, $transaction): void
+    public function createTransaction($account_id, $transaction): Transaction
     {
         $account = $this->accountRepo->find($account_id);
 
@@ -167,8 +168,6 @@ class BankService implements IBankService
 
         abort_if(($balance < 0 && $balance + $account->overdraft < 0), 400, 'Insufficient funds. Please increase your overdraft amount.');
 
-        $this->transactionRepo->create($transaction);
-
         $this->accountRepo->updateOrCreate(['id' => $account->id], ['balance' => $balance]);
 
         if ($transaction['type'] === 'transfer') {
@@ -176,6 +175,8 @@ class BankService implements IBankService
             $balance = $this->calculateBalance('deposit', $toAccount->balance, $transaction['amount']);
             $this->accountRepo->updateOrCreate(['id' => $toAccount->id], ['balance' => $balance]);
         }
+
+        return $this->transactionRepo->create($transaction);
     }
 
     /**

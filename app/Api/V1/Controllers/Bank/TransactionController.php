@@ -79,7 +79,7 @@ class TransactionController extends Controller
      *              )
      *          )
      *      ),
-     *      @OA\Response(response=201, description="Successful request"),
+     *      @OA\Response(response=200, description="Successful request"),
      *      @OA\Response(response=400, description="Bad request"),
      *      @OA\Response(response=429, description="Too Many Requests"),
      *      @OA\Response(response=500, description="Internal server error")
@@ -93,8 +93,8 @@ class TransactionController extends Controller
      */
     public function create(int $account_id, Request $request)
     {
-        $this->bankService->createTransaction($account_id, $request->all());
+        $transaction = $this->bankService->createTransaction($account_id, $request->all());
 
-        return $this->response->noContent();
+        return $this->response->item($transaction, new TransactionTransformer);
     }
 }
