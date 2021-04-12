@@ -152,7 +152,10 @@ class BankService implements IBankService
      */
     public function createTransaction($account_id, $transaction): void
     {
-        $account = $this->accountRepo->find($account_id); // TODO - check if this belongs to the authenticated user
+        $account = $this->accountRepo->find($account_id);
+
+        abort_unless(auth()->user()->can('access', $account), 401, 'You are not allowed to access this account.');
+
         $transactionType = $this->transactionTypeRepo->findByName($transaction['type']);
 
         abort_if($transactionType === null, 400, 'Could not initiate transaction: Invalid transaction type.');
@@ -162,14 +165,14 @@ class BankService implements IBankService
 
         $balance = $this->calculateBalance($transaction['type'], $account->balance, $transaction['amount']);
 
-        abort_if($balance < 0, 400, 'Insufficient funds.');
+        abort_if(($balance < 0 && $balance + $account->overdraft < 0), 400, 'Insufficient funds. Please increase your overdraft amount.');
 
         $this->transactionRepo->create($transaction);
 
         $this->accountRepo->updateOrCreate(['id' => $account->id], ['balance' => $balance]);
 
         if ($transaction['type'] === 'transfer') {
-            $toAccount = $this->accountRepo->find($transaction['to_account_id']); // TODO - check if this belongs to the authenticated user
+            $toAccount = $this->accountRepo->find($transaction['to_account_id']);
             $balance = $this->calculateBalance('deposit', $toAccount->balance, $transaction['amount']);
             $this->accountRepo->updateOrCreate(['id' => $toAccount->id], ['balance' => $balance]);
         }
