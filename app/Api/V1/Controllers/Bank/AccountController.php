@@ -100,9 +100,9 @@ class AccountController extends Controller
 
     public function add(AddAccount $request): Response
     {
-        $this->bankService->createAccount($request->only('account_type_id', 'branch_id', 'account_no', 'overdraft'));
+        $account = $this->bankService->createAccount($request->only('account_type_id', 'branch_id', 'account_no', 'overdraft'));
 
-        return $this->response->noContent();
+        return $this->response->item($account, new AccountTransformer);
     }
 
     /**

@@ -104,7 +104,7 @@ class BankService implements IBankService
         data_fill($data, 'user_id', auth()->user()->id);
         data_fill($data, 'balance', 0);
 
-        $this->accountRepo->create($data);
+        return $this->accountRepo->create($data);
     }
 
     /**
