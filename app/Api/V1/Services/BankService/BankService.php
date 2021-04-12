@@ -161,7 +161,8 @@ class BankService implements IBankService
         data_fill($transaction, 'transaction_type_id', $transactionType->id);
 
         $balance = $this->calculateBalance($transaction['type'], $account->balance, $transaction['amount']);
-        // TODO -Check funds availability on withdrawal transaction.
+
+        abort_if($balance < 0, 400, 'Insufficient funds.');
 
         $this->transactionRepo->create($transaction);
 
