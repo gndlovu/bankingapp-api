@@ -12,5 +12,4 @@ npm-debug.log
 yarn-error.log
 .history
 .gitsecret/keys/random_seed
-!*.secret
 .idea
